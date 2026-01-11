@@ -26,7 +26,7 @@ console.log(squareEls, messageEL);
 //   be called to render this game state.
 
 function init() {
-  board = ['', '', '', '', '', '', '', '', ''];
+  board = ['X', '', '', 'O', '', '', '', '', ''];
   turn = 'X';
   winner = false;
   tie = false;
@@ -39,6 +39,35 @@ console.log(init());
 
 
 //4) The state of the game should be rendered to the user.
+
+function render() {
+    updateBoard();
+    updateMessage();
+}
+
+function updateBoard() {
+    for (let i = 0; i < board.length; i++) {
+        squareEls[i].textContent = board[i];
+        if (squareEls[i].textContent === 'X') {
+            squareEls[i].style.backgroundColor = 'dodgerblue';
+            squareEls[i].style.color = 'white';
+        } else if (squareEls[i].textContent === 'O') {
+            squareEls[i].style.backgroundColor = 'tomato';
+            squareEls[i].style.color = 'white';
+        };
+    };
+};
+
+function updateMessage() {
+    if (winner === false && tie === false) {
+        messageEL.textContent = `Player ${turn}'s turn`;
+    } else if (winner === true && tie === false) {
+        messageEL.textContent = `Player${turn} wins. Flawless Victory`;
+    } else if (winner === false && tie === true) {
+        messageEL.textContent = `You Tied`;
+    };
+};
+
 
 //5) Define the required constants.
 
