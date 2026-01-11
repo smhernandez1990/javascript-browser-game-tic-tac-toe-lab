@@ -25,6 +25,19 @@ console.log(squareEls, messageEL);
 //3) Upon loading, the game state should be initialized, and a function should 
 //   be called to render this game state.
 
+function init() {
+  board = ['', '', '', '', '', '', '', '', ''];
+  turn = 'X';
+  winner = false;
+  tie = false;
+  render();
+};
+
+init();
+
+console.log(init());
+
+
 //4) The state of the game should be rendered to the user.
 
 //5) Define the required constants.
