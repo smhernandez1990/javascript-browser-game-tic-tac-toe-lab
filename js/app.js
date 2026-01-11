@@ -17,6 +17,11 @@ let tie;
 //2) Store cached element references.
 
 
+const squareEls = document.querySelectorAll('.sqr');
+const messageEL = document.querySelector('#message');
+
+console.log(squareEls, messageEL);
+
 //3) Upon loading, the game state should be initialized, and a function should 
 //   be called to render this game state.
 
