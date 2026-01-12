@@ -54,6 +54,8 @@ function updateBoard() {
         } else if (squareEls[i].textContent === 'O') {
             squareEls[i].style.backgroundColor = 'tomato';
             squareEls[i].style.color = 'white';
+        } else {
+            squareEls[i].style.backgroundColor = 'gainsboro';
         };
     };
 };
@@ -134,3 +136,8 @@ function switchPlayerTurn() {
 };
 
 //7) Create Reset functionality.
+const resetBtnEl = document.createElement('button');
+resetBtnEl.setAttribute('id', 'reset');
+resetBtnEl.textContent = 'Reset';
+resetBtnEl.addEventListener('click', init);
+document.body.appendChild(resetBtnEl);
