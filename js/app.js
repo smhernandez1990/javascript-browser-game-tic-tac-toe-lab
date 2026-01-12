@@ -16,11 +16,8 @@ let tie;
 
 //2) Store cached element references.
 
-
 const squareEls = document.querySelectorAll('.sqr');
 const messageEL = document.querySelector('#message');
-
-console.log(squareEls, messageEL);
 
 //3) Upon loading, the game state should be initialized, and a function should 
 //   be called to render this game state.
@@ -34,9 +31,6 @@ function init() {
 };
 
 init();
-
-console.log(init());
-
 
 //4) The state of the game should be rendered to the user.
 
@@ -86,18 +80,16 @@ const winningCombos = [
 //6) Handle a player clicking a square with a `handleClick` function.
 
 function handleClick(event) {
-    const squareIndex = Array.from(squareEls).indexOf(event.target);
+    const squareIndex = event.target.dataset.index;
     if (board[squareIndex] !== '' || winner === true) {
         return;
     };
     placePiece(squareIndex);
-    console.log(board);
     checkForWinner();
-    console.log(winner);
     checkForTie();
-    console.log(tie);
-    switchPlayerTurn();
-    console.log(turn);
+    if (!winner && !tie) {
+        switchPlayerTurn();
+    };
     render();
 };
 
@@ -136,8 +128,5 @@ function switchPlayerTurn() {
 };
 
 //7) Create Reset functionality.
-const resetBtnEl = document.createElement('button');
-resetBtnEl.setAttribute('id', 'reset');
-resetBtnEl.textContent = 'Reset';
+const resetBtnEl = document.querySelector('#reset');
 resetBtnEl.addEventListener('click', init);
-document.body.appendChild(resetBtnEl);
