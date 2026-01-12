@@ -120,7 +120,7 @@ function checkForWinner() {
 };
 
 function checkForTie() {
-    if (board.includes('') === false) {
+    if (board.includes('') === false && winner === false) {
         tie = true;
     };
 };
