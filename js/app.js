@@ -26,7 +26,7 @@ console.log(squareEls, messageEL);
 //   be called to render this game state.
 
 function init() {
-  board = ['X', '', '', 'O', '', '', '', '', ''];
+  board = ['', '', '', '', '', '', '', '', ''];
   turn = 'X';
   winner = false;
   tie = false;
@@ -62,7 +62,7 @@ function updateMessage() {
     if (winner === false && tie === false) {
         messageEL.textContent = `Player ${turn}'s turn`;
     } else if (winner === true && tie === false) {
-        messageEL.textContent = `Player${turn} wins. Flawless Victory`;
+        messageEL.textContent = `Player ${turn} wins. Flawless Victory`;
     } else if (winner === false && tie === true) {
         messageEL.textContent = `You Tied`;
     };
@@ -82,5 +82,55 @@ const winningCombos = [
 ];
 
 //6) Handle a player clicking a square with a `handleClick` function.
+
+function handleClick(event) {
+    const squareIndex = Array.from(squareEls).indexOf(event.target);
+    if (board[squareIndex] !== '' || winner === true) {
+        return;
+    };
+    placePiece(squareIndex);
+    console.log(board);
+    checkForWinner();
+    console.log(winner);
+    checkForTie();
+    console.log(tie);
+    switchPlayerTurn();
+    console.log(turn);
+    render();
+};
+
+for (let i = 0; i < squareEls.length; i++) {
+    squareEls[i].addEventListener('click', handleClick);
+};
+
+function placePiece(i) {
+    board[i] = turn;
+};
+
+function checkForWinner() {
+    for (let i = 0; i < winningCombos.length; i++) {
+        const [a, b, c] = winningCombos[i];
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            winner = true;
+            return;
+        };
+    };
+};
+
+function checkForTie() {
+    if (board.includes('') === false) {
+        tie = true;
+    };
+};
+
+function switchPlayerTurn() {
+    if (winner === true) {
+        return;
+    } else if (turn === 'X') {
+        turn = 'O';
+    } else {
+        turn = 'X';
+    };
+};
 
 //7) Create Reset functionality.
